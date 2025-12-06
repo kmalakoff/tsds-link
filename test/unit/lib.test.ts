@@ -55,7 +55,7 @@ function addTests(repo) {
       it('link', (done) => {
         link([], { cwd: dest }, (err?: Error): undefined => {
           if (err) {
-            done(err.message);
+            done(err);
             return;
           }
           // Verify the module was linked
