@@ -1,4 +1,4 @@
-// remove NODE_OPTIONS from ts-dev-stack
+// remove NODE_OPTIONS to not interfere with tests
 delete process.env.NODE_OPTIONS;
 
 import assert from 'assert';
@@ -32,7 +32,7 @@ function addTests(repo) {
     const deps = { ...(modulePackage.dependencies || {}), ...(modulePackage.peerDependencies || {}) };
 
     before((cb) => {
-      installGitRepo(repo, dest, (err?: Error): undefined => {
+      installGitRepo(repo, dest, (err?: Error): void => {
         if (err) {
           cb(err);
           return;
@@ -53,9 +53,9 @@ function addTests(repo) {
 
     describe('happy path', () => {
       it('link', (done) => {
-        link([], { cwd: dest }, (err?: Error): undefined => {
+        link([], { cwd: dest }, (err?: Error): void => {
           if (err) {
-            done(err.message);
+            done(err);
             return;
           }
           // Verify the module was linked
