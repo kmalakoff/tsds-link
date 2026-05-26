@@ -4,5 +4,5 @@ import { installPath } from 'tsds-lib';
 
 export default function command(_args: string[], options: CommandOptions, callback: CommandCallback): void {
   const cwd: string = (options.cwd as string) || process.cwd();
-  link(cwd, installPath(options), callback);
+  link(cwd, installPath(options), (err) => callback(err));
 }
